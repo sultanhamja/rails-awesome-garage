@@ -1,0 +1,43 @@
+<%# link to garage %>
+<p><%= link_to "My Garage", favourites_path %></p>
+
+<%# car details %>
+<div class="container m-3">
+  <h2><%= @car.brand %></h2>
+  <h3><%= @car.model %></h3>
+  <p><%= @car.fuel %></p>
+  <p><%= @car.year %></p>
+</div>
+
+
+<% if @car.favourites.empty? %>
+<%# favourite form %>
+  <div class="container">
+    <%= simple_form_for [@car, @favourite] do |f| %>
+      <%= f.submit "Save in Garage" %>
+    <% end %>
+  </div>
+<% else %>
+  <p>this car is in your garage</p>
+<% end %>
+
+<%# review form %>
+  <div class="container">
+    <%= simple_form_for [@car, @review] do |f| %>
+      <%= f.input :comment, placeholder: "Write your comment here" %>
+      <%= f.input :rating, as: :select, collection: [1,1.5, 2,2.5, 3,3.5, 4,4.5, 5], prompt: "Add rating" %>
+      <%= f.submit "send" %>
+    <% end %>
+  </div>
+<%# display reviews %>
+<div class="container">
+  <% @car.reviews.each do |review| %>
+    <p><%= review.comment %></p>
+    <p> <%= '⭐' * review.rating.to_i %></p>
+  <% end %>
+</div>
+
+<%# back link %>
+<div class="container">
+  <%= link_to "Back to cars list", cars_path %>
+</div>
