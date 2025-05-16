@@ -1,27 +1,30 @@
-<%# link to garage %>
-<p><%= link_to "My Garage", favourites_path %></p>
 
 <%# car details %>
-<div class="container m-3">
-  <h2><%= @car.brand %></h2>
-  <h3><%= @car.model %></h3>
-  <p><%= @car.fuel %></p>
-  <p><%= @car.year %></p>
-</div>
-
-
-<% if @car.favourites.empty? %>
-<%# favourite form %>
-  <div class="container">
-    <%= simple_form_for [@car, @favourite] do |f| %>
-      <%= f.submit "Save in Garage" %>
-    <% end %>
+<div class="container w-75">
+  <div class="card-show">
+    <div class="car-content">
+      <div class="car-name">
+        <h3><%= @car.brand %></h3>
+        <h2><%= @car.model %></h2>
+      </div>
+        <%# favourite form %>
+      <div class="favourite">
+        <% if @car.favourites.empty? %>
+            <%= simple_form_for [@car, @favourite] do |f| %>
+              <%= f.submit "Save in Garage", class:"favourite-btn"%>
+              <% end %>
+        <% else %>
+          <p>this car is in your garage</p>
+        <% end %>
+      </div>
+      <p><%= @car.fuel %> | <%= @car.year %></p>
+    </div>
+    <%= image_tag(@car.image_url) %>
   </div>
-<% else %>
-  <p>this car is in your garage</p>
-<% end %>
 
-<%# review form %>
+
+
+  <%# review form %>
   <div class="container">
     <%= simple_form_for [@car, @review] do |f| %>
       <%= f.input :comment, placeholder: "Write your comment here" %>
@@ -29,15 +32,16 @@
       <%= f.submit "send" %>
     <% end %>
   </div>
-<%# display reviews %>
-<div class="container">
-  <% @car.reviews.each do |review| %>
-    <p><%= review.comment %></p>
-    <p> <%= '⭐' * review.rating.to_i %></p>
-  <% end %>
-</div>
+  <%# display reviews %>
+  <div class="container">
+    <% @car.reviews.each do |review| %>
+      <p><%= review.comment %></p>
+      <p> <%= '⭐' * review.rating.to_i %></p>
+    <% end %>
+  </div>
 
-<%# back link %>
-<div class="container">
-  <%= link_to "Back to cars list", cars_path %>
+  <%# back link %>
+  <div class="container">
+    <%= link_to "Back to cars list", cars_path %>
+  </div>
 </div>

@@ -1,0 +1,25 @@
+.bg-img {
+  background-image: url("LP-bg.jpg");
+  height: 90vh;
+  background-size: cover;
+  background-position: center;
+
+  .hero-content{
+  color: white;
+  width: 40%;
+  padding-top: 15%;
+  padding-left: 10%;
+  }
+
+  .hero-content p {
+    margin-top: 3rem;
+  }
+
+  .btn-hero {
+    background-color: #29667A;
+    padding: 16px;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+  }
+}

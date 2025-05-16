@@ -4,7 +4,7 @@
   <h2><%= favourite.car.brand %></h2>
   <h3><%= favourite.car.model %></h3>
   <p><%= favourite.car.year %> | <%= favourite.car.fuel %></p>
-  <p><%= link_to "Delete", favourite_path(favourite), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %></p>
-<% end %>
+  <p><%= link_to "Delete", favourite_path(favourite), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %></p>
 
+<% end %>
 <p><%= link_to "back to Cars list", cars_path %></p>

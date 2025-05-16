@@ -1,12 +1,17 @@
-.navbar-lewagon {
+.nav {
+  display: flex;
   justify-content: space-between;
-  background: white;
-}
+  align-items: center;
 
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
-}
+  .menu-item {
+    display: flex;
 
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
+    p {
+        margin: 0 2rem;
+      a {
+        text-decoration: none;
+        color: black;
+      }
+    }
+  }
 }

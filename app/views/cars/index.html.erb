@@ -1,16 +1,16 @@
- <%# link to garage %>
- <p><%= link_to "My Garage", favourites_path %></p>
-
  <%# list of all the cars %>
-<ul class="list-group">
-  <% @cars.each do |car| %>
-    <%= link_to car_path(car) do %>
-      <li class="list-group-item">
-        <h2><%= car.brand %></h2>
-        <h3><%= car.model %></h3>
-        <p><%= car.created_at.strftime("%a %b %-d at %H:%M %p") %></p>
-        <p><%= car.owner.name %></p>
-      </li>
+    <% @cars.each do |car| %>
+      <%= link_to car_path(car) do %>
+        <div class="list-card mt-5">
+            <div class="card-content">
+              <h3><%= car.brand %></h3>
+              <h2><%= car.model %></h2>
+              <div class="bottom-content">
+                <p><%= car.created_at.strftime("%a %b %-d at %H:%M %p") %></p>
+                <p class="owner"><%= car.owner.name %></p>
+              </div>
+            </div>
+            <%= image_tag(car.image_url, class:car) %>
+        </div>
+      <% end %>
     <% end %>
-  <% end %>
-</ul>

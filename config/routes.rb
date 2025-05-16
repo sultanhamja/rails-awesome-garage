@@ -9,8 +9,9 @@ Rails.application.routes.draw do
     resources :favourites, only:  [:create]
   end
   resources :favourites, only:  [:index, :destroy]
+  resources :pages, only: [:index]
 
 
   # Defines the root path route ("/")
-  # root "posts#index"
+  root "pages#index"
 end
