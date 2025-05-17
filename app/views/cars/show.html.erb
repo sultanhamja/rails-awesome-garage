@@ -1,57 +1,54 @@
 <%# back link %>
-    <div class="back-link">
+<div class="back-link">
   <%= link_to cars_path do %>
-      <i class="fa-solid fa-arrow-left"></i>
-      <p>Back</p>
+    <i class="fa-solid fa-arrow-left"></i>
+    <p>Back</p>
   <% end %>
-    </div>
+</div>
 <%# car details %>
-  <div class="container w-75">
-    <div class="car-show">
-      <div class="car-content">
-        <div class="car-name">
-          <h3><%= @car.brand %></h3>
-          <h2><%= @car.model %></h2>
-        </div>
-          <%# favourite form %>
-        <div class="favourite">
-          <% if @car.favourites.empty? %>
-            <%= simple_form_for [@car, @favourite] do |f| %>
-              <%= f.submit "Save in Garage", class:"favourite-btn"%>
-            <% end %>
-          <% else %>
-            <p>this car is in your garage</p>
-          <% end %>
-        </div>
-        <p><%= @car.fuel %> | <%= @car.year %></p>
+<div class="container w-75">
+  <div class="car-show">
+    <div class="car-content">
+      <div class="car-name">
+        <h3><%= @car.brand %></h3>
+        <h2><%= @car.model %></h2>
       </div>
-      <%= image_tag(@car.image_url) %>
-    </div>
-  </div>
-
-<%# display reviews %>
-  <div class="reviews-display">
-    <h2 class="sec-title">Lovely Words</h2>
-      <div class="grid">
-        <% @car.reviews.each do |review| %>
-          <div class="review container">
-            <p><i class="fa-solid fa-quote-left"></i></p>
-            <p class="comment"><%= review.comment %></p>
-            <p> <%= '⭐' * review.rating.to_i %></p>
-          </div>
+      <%# favourite form %>
+      <div class="favourite">
+        <% if @car.favourites.empty? %>
+          <%= simple_form_for [@car, @favourite] do |f| %>
+            <%= f.submit "Save in Garage", class:"favourite-btn"%>
+          <% end %>
+        <% else %>
+          <p>this car is in your garage</p>
         <% end %>
       </div>
+      <p><%= @car.fuel %> | <%= @car.year %></p>
+    </div>
+    <%= image_tag(@car.image_url) %>
   </div>
-
-
-<%# review form %>
-  <div class="container review-form my-2">
-    <h2 class="sec-title">Leave Comment</h2>
-    <%= simple_form_for [@car, @review] do |f| %>
-      <div class="form-item my-3">
-        <%= f.input :comment, placeholder: "Write your comment here" %>
-        <%= f.input :rating, as: :select, collection: [1,1.5, 2,2.5, 3,3.5, 4,4.5, 5], prompt: "Add rating" %>
-        <%= f.submit%>
+</div>
+<%# display reviews %>
+<div class="reviews-display">
+  <h2 class="sec-title">Lovely Words</h2>
+  <div class="grid-3">
+    <% @car.reviews.each do |review| %>
+      <div class="review container">
+        <p><i class="fa-solid fa-quote-left"></i></p>
+        <p class="comment"><%= review.comment %></p>
+        <p> <%= '⭐' * review.rating.to_i %></p>
       </div>
     <% end %>
   </div>
+</div>
+<%# review form %>
+<div class="container review-form my-2">
+  <h2 class="sec-title">Leave Comment</h2>
+  <%= simple_form_for [@car, @review] do |f| %>
+    <div class="form-item my-3">
+      <%= f.input :comment, placeholder: "Write your comment here" %>
+      <%= f.input :rating, as: :select, collection: [1,1.5, 2,2.5, 3,3.5, 4,4.5, 5], prompt: "Add rating" %>
+      <%= f.submit%>
+    </div>
+  <% end %>
+</div>

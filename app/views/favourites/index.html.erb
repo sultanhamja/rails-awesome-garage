@@ -1,10 +1,26 @@
-<h1>My Garage</h1>
-
-<% @favourites.each do |favourite| %>
-  <h2><%= favourite.car.brand %></h2>
-  <h3><%= favourite.car.model %></h3>
-  <p><%= favourite.car.year %> | <%= favourite.car.fuel %></p>
-  <p><%= link_to "Delete", favourite_path(favourite), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %></p>
-
-<% end %>
-<p><%= link_to "back to Cars list", cars_path %></p>
+<%# Back link %>
+<div class="back-link">
+  <%= link_to cars_path do %>
+    <i class="fa-solid fa-arrow-left"></i>
+    <p>Back</p>
+  <% end %>
+</div>
+<div class="container">
+  <h1 class="sec-title">My Garage</h1>
+  <div class="grid-3">
+  <% @favourites.each do |favourite| %>
+    <div class="car-card mt-3">
+      <p><%= image_tag(favourite.car.image_url) %></p>
+      <h3><%= favourite.car.brand %></h3>
+      <h2><%= favourite.car.model %></h2>
+      <div class="bottom-content">
+        <p><%= favourite.car.year %> | <%= favourite.car.fuel %></p>
+        <p class="comment-1"><%= favourite.car.reviews[0].comment %></p>
+      </div>
+      <p class="delete"><%= link_to favourite_path(favourite), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
+      <i class="fa-solid fa-trash"></i>
+      <% end %></p>
+    </div>
+  <% end %>
+  </div>
+</div>
